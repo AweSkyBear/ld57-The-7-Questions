@@ -24,7 +24,7 @@ export const controlTree = obsDispCreator(() => {
   return {
     [obsDispEvents.OBS_CREATE]: () => {
       state.tree = TheScenes.Game.add
-        .image(midPoint()[0], midPoint()[1], TEXTURES_MAP.tree)
+        .image(midPoint()[0], midPoint()[1] - 100, TEXTURES_MAP.tree)
         .setAlpha(1);
 
       exposeToWindow({ tree: state.tree });

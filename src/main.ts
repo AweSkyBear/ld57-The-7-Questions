@@ -19,10 +19,11 @@ const config: Types.Core.GameConfig = {
   height: GAME_SIZE.height,
   parent: "game-container",
   backgroundColor: "#000000",
-  pixelArt: true,
+  // pixelArt: true,
+  antialiasGL: true,
   scale: {
-    mode: Phaser.Scale.FIT,
-    // zoom: 2,
+    mode: Phaser.Scale.NONE,
+    zoom: 1 - (window.devicePixelRatio - 1), // important for crisper looks
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
   scene: [Boot, Preloader, MainMenu, MainGame, GameOver],
