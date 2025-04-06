@@ -6,12 +6,17 @@ import { Preloader } from "./scenes/Preloader";
 
 import { Game, Types } from "phaser";
 
+export const GAME_SIZE = {
+  width: 1050,
+  height: 750,
+};
+
 //  Find out more information about the Game Config at:
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config: Types.Core.GameConfig = {
-  type: Phaser.AUTO,
-  width: 1050,
-  height: 750,
+  type: Phaser.WEBGL,
+  width: GAME_SIZE.width,
+  height: GAME_SIZE.height,
   parent: "game-container",
   backgroundColor: "#000000",
   scale: {
