@@ -1,17 +1,28 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from "vite";
+
+const fullReloadAlways = {
+  handleHotUpdate({ server }) {
+    server.ws.send({ type: "full-reload" });
+    return [];
+  },
+};
 
 export default defineConfig({
-    base: './',
-    build: {
-        rollupOptions: {
-            output: {
-                manualChunks: {
-                    phaser: ['phaser']
-                }
-            }
+  base: "./",
+  plugins: [fullReloadAlways],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          phaser: ["phaser"],
         },
+      },
     },
-    server: {
-        port: 8080
-    }
+  },
+  server: {
+    port: 8080,
+    watch: {
+      usePolling: true,
+    },
+  },
 });

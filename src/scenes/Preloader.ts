@@ -26,7 +26,7 @@ export class Preloader extends Scene {
   preload() {
     this.load.image(TEXTURES_MAP.bg, "assets/bg.png");
     this.load.image(TEXTURES_MAP.cube, "assets/cube.png");
-    this.load.image(TEXTURES_MAP.tree, "assets/tree-1"); // TODO: other trees ?
+    this.load.image(TEXTURES_MAP.tree, "assets/tree-1.jpg"); // TODO: other trees ?
     this.load.image(TEXTURES_MAP.questionBg, "assets/q-bg.png");
     this.load.image(TEXTURES_MAP.questionBg, "assets/choice-hexa.png");
 

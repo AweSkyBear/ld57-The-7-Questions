@@ -14,29 +14,27 @@ import { GAME_SIZE } from "./main";
 import { TEXTURES_MAP } from "./common/textures";
 import { sceneEvents } from "./common/sceneEvents";
 import { exposeToWindow } from "./common/debug";
+import { midPoint } from "./common/point";
 
-export const controlBackground = obsDispCreator(() => {
+export const controlTree = obsDispCreator(() => {
   const state = {
-    bg: null as TileSprite | null,
+    tree: null as Image | null,
   };
 
   return {
     [obsDispEvents.OBS_CREATE]: () => {
-      state.bg = TheScenes.Game.add
-        .tileSprite(0, 0, GAME_SIZE.width, GAME_SIZE.height, TEXTURES_MAP.bg)
-        .setOrigin(0, 0)
+      state.tree = TheScenes.Game.add
+        .image(midPoint()[0], midPoint()[1], TEXTURES_MAP.tree)
         .setAlpha(1);
 
-      exposeToWindow({ bg: state.bg });
+      exposeToWindow({ tree: state.tree });
     },
     [obsDispEvents.OBS_REMOVE]: () => {
-      TheScenes.Game.scene.scene.children.remove(state.bg);
-      state.bg = null;
+      TheScenes.Game.scene.scene.children.remove(state.tree);
+      state.tree = null;
     },
     [sceneEvents.UPDATE]: () => {
-      if (!state.bg) return;
-
-      state.bg.tilePositionX = state.bg?.tilePositionX + 0.02;
+      if (!state.tree) return;
     },
   };
 });
