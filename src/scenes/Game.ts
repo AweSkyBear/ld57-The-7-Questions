@@ -53,6 +53,11 @@ export class Game extends Scene {
       this.observers.forEach((o) => ODAPI.removeObs(o));
       this.observers = [];
     });
+
+    /// audio track
+    const ambientTrack = this.sound.add("ambient");
+    ambientTrack.loop = true;
+    ambientTrack.play();
   }
 
   private _deltaAccum = 0;

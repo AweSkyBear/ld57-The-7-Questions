@@ -30,6 +30,9 @@ export class Preloader extends Scene {
     this.load.image(TEXTURES_MAP.questionBg, "assets/q-bg.png");
     this.load.image(TEXTURES_MAP.questionBg, "assets/choice-hexa.png");
 
+    this.load.audio("ambient", "assets/ambient.mp3");
+    this.load.audio("story-reveal", "assets/story-reveal1.mp3");
+
     //  Load the assets for the game - Replace with your own assets
     this.load.setPath("assets");
 

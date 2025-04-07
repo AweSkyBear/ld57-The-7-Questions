@@ -42,7 +42,7 @@ export const QUESTIONS = [
     "You are able to suppress inertia before making a final choice. You think deeply.",
   ],
   [
-    "Luck is part of life, of good life",
+    "Luck is part of life, of good life ?",
     "You are willing to accept that others help you. You know it could be worse if you were on your own.",
     "Your beliefs tell you there is only hard work that can get you to your dreams. Luck is not only not key but rather a distraction. You don't like distractions on the way to your goals. You'd rather believe in determinism than happy circumstances.",
     "A life and where it gets you is a combination of choices. We are blessed to sometimes have a good set of choices. We call this chance, luck or even faith sometimes. However, the rest is up to us.",

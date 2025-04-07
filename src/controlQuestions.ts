@@ -107,12 +107,6 @@ export const controlQuestions = obsDispCreator(() => {
       // TODO:EFFECT?
       defer(() => ODAPI.dispatchEvent(gameEvents.QUESTION_SHOW_NEXT), 1);
     },
-    [obsDispEvents.OBS_REMOVE]: () => {
-      TheScenes.Game.scene.scene.children.remove(state.qBg);
-      TheScenes.Game.scene.scene.children.remove(state.qText);
-      state.qBg = null;
-      state.qText = null;
-    },
     [gameEvents.QUESTION_ANSWERED_ALL]: () => {
       state.qBg?.setAlpha(0);
       state.qText?.setAlpha(0);
@@ -127,6 +121,12 @@ export const controlQuestions = obsDispCreator(() => {
       defer(() => {
         TheScenes.Game.scene.resume();
       });
+    },
+    [obsDispEvents.OBS_REMOVE]: () => {
+      TheScenes.Game.scene.scene.children.remove(state.qBg);
+      TheScenes.Game.scene.scene.children.remove(state.qText);
+      state.qBg = null;
+      state.qText = null;
     },
   };
 });

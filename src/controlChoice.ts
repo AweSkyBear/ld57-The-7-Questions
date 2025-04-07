@@ -41,6 +41,19 @@ export const controlChoice = obsDispCreator(() => {
         .setTint(tint)
         .setInteractive()
         .on(Phaser.Input.Events.POINTER_DOWN, onClick)
+        .on(Phaser.Input.Events.POINTER_OVER, function () {
+          // @ts-ignore
+          this.setScale(1.3);
+          // @ts-ignore
+          this.setAlpha(0.8);
+        })
+        .on(Phaser.Input.Events.POINTER_OUT, function () {
+          // @ts-ignore
+          this.setScale(1);
+          // @ts-ignore
+          this.setAlpha(1);
+        })
+        .setBlendMode(Phaser.BlendModes.SCREEN)
     );
   };
 

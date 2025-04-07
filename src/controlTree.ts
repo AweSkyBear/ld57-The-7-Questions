@@ -15,6 +15,7 @@ import { TEXTURES_MAP } from "./common/textures";
 import { sceneEvents } from "./common/sceneEvents";
 import { exposeToWindow } from "./common/debug";
 import { midPoint } from "./common/point";
+import { gameEvents } from "./common/gameEvents";
 
 export const controlTree = obsDispCreator(() => {
   const state = {
@@ -29,12 +30,15 @@ export const controlTree = obsDispCreator(() => {
 
       exposeToWindow({ tree: state.tree });
     },
+    [gameEvents.GAME_START]: () => {
+      state.tree?.setAlpha(1);
+    },
+    [gameEvents.GAME_STORY_SHOWN]: () => {
+      state.tree?.setAlpha(0.5);
+    },
     [obsDispEvents.OBS_REMOVE]: () => {
       TheScenes.Game.scene.scene.children.remove(state.tree);
       state.tree = null;
-    },
-    [sceneEvents.UPDATE]: () => {
-      if (!state.tree) return;
     },
   };
 });
