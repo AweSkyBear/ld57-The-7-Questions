@@ -18,6 +18,7 @@ import { exposeToWindow } from "./common/debug";
 import { midPoint } from "./common/point";
 import { questionTextO } from "./common/text";
 import { gameEvents } from "./common/gameEvents";
+import { GameState } from "./common/GameState";
 
 export const controlChoice = obsDispCreator(() => {
   const state = {
@@ -30,34 +31,44 @@ export const controlChoice = obsDispCreator(() => {
     return (
       TheScenes.Game.add
         .image(
-          midPoint()[0] + (ind - 1) * 90,
-          midPoint()[1] + 200,
+          Math.floor(midPoint()[0] + (ind - 1) * 90),
+          Math.floor(midPoint()[1] + 200),
           TEXTURES_MAP.cube
         )
         .setAlpha(1)
         // .setBlendMode(Phaser.BlendModes.ADD)
         .setAlpha(1)
         .setTint(tint)
+        .setInteractive()
+        .on(Phaser.Input.Events.POINTER_DOWN, onClick)
     );
   };
 
   return {
     [obsDispEvents.OBS_CREATE]: () => {
-      state.chGreen = createChoiceCube(0, 0x00ff00, () => {
-        ODAPI.dispatchEvent(gameEvents.QUESTION_ANSWER, {
-          payload: { value: "green" },
+      const createClickHandler = (choiceInd: 0 | 1 | 2) => () => {
+        if (!GameState.currentQuestion) {
+          // TODO: EFFECT or nothing
+          return;
+        }
+
+        // TODO:BRANCH - if has NO MORE choices left for this color: just tween the thing
+        //// maybe use `this`
+
+        const answerBehindQuestion = GameState.currentQuestion[choiceInd + 1];
+        ODAPI.dispatchEvent(gameEvents.QUESTION_ANSWERED, {
+          payload: {
+            questionInd: GameState.qIndex,
+            qAnswerInd: choiceInd,
+            qIndex: GameState.qIndex,
+            qAnswerStatement: answerBehindQuestion,
+          },
         });
-      });
-      state.chRed = createChoiceCube(1, 0xff0000, () => {
-        ODAPI.dispatchEvent(gameEvents.QUESTION_ANSWER, {
-          payload: { value: "red" },
-        });
-      });
-      state.chGrey = createChoiceCube(2, 0x999999, () => {
-        ODAPI.dispatchEvent(gameEvents.QUESTION_ANSWER, {
-          payload: { value: "grey" },
-        });
-      });
+      };
+
+      state.chGreen = createChoiceCube(0, 0x00ff00, createClickHandler(0));
+      state.chRed = createChoiceCube(1, 0xff0000, createClickHandler(1));
+      state.chGrey = createChoiceCube(2, 0x999999, createClickHandler(2));
 
       exposeToWindow({ ...state });
     },

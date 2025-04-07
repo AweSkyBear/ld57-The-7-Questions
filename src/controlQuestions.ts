@@ -5,6 +5,7 @@ import {
   IEvent,
   obsDispCreator,
   obsDispEvents,
+  ODAPI,
   TEventTarget,
 } from "./OD";
 import { TEventDispatchOptions } from "obs-disp/dist/obs-disp";
@@ -16,7 +17,15 @@ import { sceneEvents } from "./common/sceneEvents";
 import { exposeToWindow } from "./common/debug";
 import { midPoint } from "./common/point";
 import { questionTextO } from "./common/text";
+import { gameEvents } from "./common/gameEvents";
+import { GameState } from "./common/GameState";
+import { getDefaultGamePrando } from "./common/prando";
+import QUESTIONS from "./data/questions";
+import { defer, repeat, shuffle } from "./common/func";
 
+/**
+ * Show Q based on what is next, render the Q and the bar
+ */
 export const controlQuestions = obsDispCreator(() => {
   const state = {
     qBg: null as Image | null,
@@ -38,6 +47,62 @@ export const controlQuestions = obsDispCreator(() => {
         midPoint()[1] + offsetY
       );
       exposeToWindow({ qText: state.qText });
+    },
+    [gameEvents.GAME_START]: () => {
+      GameState.gameRunning = true;
+
+      GameState.qIndex = -1;
+
+      // prandom init
+      GameState.prando = getDefaultGamePrando();
+
+      // set randomized set of questions
+      const shuffledQuestions = shuffle([...QUESTIONS], GameState.prando);
+
+      GameState.questionSet = repeat(7).map((_, ind) => shuffledQuestions[ind]);
+
+      ODAPI.dispatchEvent(gameEvents.QUESTION_SHOW_NEXT);
+    },
+    [gameEvents.QUESTION_SHOW_NEXT]: () => {
+      GameState.qIndex++;
+
+      if (GameState.qIndex < 7) {
+        const qText = GameState.questionSet[GameState.qIndex][0];
+        state.qText?.setText(qText);
+
+        // TODO:EFFECT - if any delay before setting the question / or effect?, maybe delay the next event?
+        ODAPI.dispatchEvent(gameEvents.QUESTION_ASKED);
+      } else {
+        // TODO:EV END GAME
+        ODAPI.dispatchEvent(gameEvents.QUESTION_ANSWERED_ALL);
+      }
+    },
+    [gameEvents.QUESTION_ASKED]: () => {
+      GameState.currentQuestion = GameState.questionSet[GameState.qIndex];
+    },
+    [gameEvents.QUESTION_ANSWERED]: (ev) => {
+      if (!GameState.gameRunning) return;
+
+      // safety - if quesion already answered / skip it
+      const questionAlreadyAnswered =
+        ev?.payload?.questionInd &&
+        GameState.selectedAnswers.length > ev?.payload?.questionInd;
+
+      if (questionAlreadyAnswered) {
+        return;
+      }
+
+      //       //
+
+      // //  [1,2,3]
+      //     [] [.] [..]
+      //     0  0 1 [ ]
+
+      const qAnswerStatement = ev?.payload?.qAnswerStatement as string;
+      GameState.selectedAnswers.push(qAnswerStatement);
+
+      // TODO:
+      defer(() => ODAPI.dispatchEvent(gameEvents.QUESTION_SHOW_NEXT), 1);
     },
     [obsDispEvents.OBS_REMOVE]: () => {
       TheScenes.Game.scene.scene.children.remove(state.qBg);

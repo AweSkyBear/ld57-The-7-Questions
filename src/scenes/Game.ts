@@ -6,6 +6,8 @@ import { controlBackground } from "../controlBackground";
 import { controlTree } from "../controlTree";
 import { controlQuestions } from "../controlQuestions";
 import { controlChoice } from "../controlChoice";
+import { gameEvents } from "../common/gameEvents";
+import { controlFinalStory } from "../controlFinalStory";
 
 const TARGET_FPS = 60;
 const FPS_DELTA = 1000 / TARGET_FPS;
@@ -28,8 +30,11 @@ export class Game extends Scene {
       controlBackground(),
       controlTree(),
       controlQuestions(),
-      controlChoice()
+      controlChoice(),
+      controlFinalStory()
     );
+
+    ODAPI.dispatchDeferredEvent(gameEvents.GAME_START);
 
     ////
 

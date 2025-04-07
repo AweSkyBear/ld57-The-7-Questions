@@ -6,6 +6,7 @@ export const ODAPI = createAPI({
   //// for debugging
   onEvent: (ev) =>
     ![
+      "GAME_UPDATE",
       "UPDATE",
       "POST_UPDATE",
       "INPUT_UPDATE",
@@ -44,7 +45,7 @@ export type IObserverOptions = ObsDisp.IObserverOptions;
 export type IEvent = ObsDisp.IEvent;
 export type TEventTarget = ObsDisp.TEventTarget;
 
-exposeToWindow({ OD: ODAPI }); // for tinkering only - expose the whole API
+exposeToWindow({ ODAPI }); // for tinkering only - expose the whole API
 
 export const getObserversByName = (name: string) =>
   ODAPI.getAllObservers().filter((o) => o.options?.name === name);
