@@ -18,7 +18,7 @@ import { exposeToWindow } from "./common/debug";
 import { midPoint } from "./common/point";
 import { questionTextO } from "./common/text";
 import { gameEvents } from "./common/gameEvents";
-import { GameState } from "./common/GameState";
+import { GameState, resetGameState } from "./common/GameState";
 import { getDefaultGamePrando } from "./common/prando";
 import QUESTIONS from "./data/questions";
 import { defer, repeat, shuffle } from "./common/func";
@@ -49,6 +49,9 @@ export const controlQuestions = obsDispCreator(() => {
       exposeToWindow({ qText: state.qText });
     },
     [gameEvents.GAME_START]: () => {
+      state.qBg?.setAlpha(0.5);
+      state.qText?.setAlpha(1);
+
       GameState.gameRunning = true;
 
       GameState.qIndex = -1;
@@ -101,7 +104,7 @@ export const controlQuestions = obsDispCreator(() => {
       const qAnswerStatement = ev?.payload?.qAnswerStatement as string;
       GameState.selectedAnswers.push(qAnswerStatement);
 
-      // TODO:
+      // TODO:EFFECT?
       defer(() => ODAPI.dispatchEvent(gameEvents.QUESTION_SHOW_NEXT), 1);
     },
     [obsDispEvents.OBS_REMOVE]: () => {
@@ -110,8 +113,20 @@ export const controlQuestions = obsDispCreator(() => {
       state.qBg = null;
       state.qText = null;
     },
+    [gameEvents.QUESTION_ANSWERED_ALL]: () => {
+      state.qBg?.setAlpha(0);
+      state.qText?.setAlpha(0);
+    },
     [sceneEvents.UPDATE]: () => {
       if (!state.qBg) return;
+    },
+    [gameEvents.GAME_RESTART]: () => {
+      TheScenes.Game.scene.pause();
+      resetGameState();
+
+      defer(() => {
+        TheScenes.Game.scene.resume();
+      });
     },
   };
 });

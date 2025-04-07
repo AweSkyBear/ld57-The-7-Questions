@@ -72,6 +72,16 @@ export const controlChoice = obsDispCreator(() => {
 
       exposeToWindow({ ...state });
     },
+    [gameEvents.GAME_START]: () => {
+      state.chGreen?.setAlpha(1);
+      state.chRed?.setAlpha(1);
+      state.chGrey?.setAlpha(1);
+    },
+    [gameEvents.QUESTION_ANSWERED_ALL]: () => {
+      state.chGreen?.setAlpha(0);
+      state.chRed?.setAlpha(0);
+      state.chGrey?.setAlpha(0);
+    },
     [obsDispEvents.OBS_REMOVE]: () => {
       [state.chGreen, state.chGrey, state.chRed].forEach((o) =>
         TheScenes.Game.scene.scene.children.remove(o)

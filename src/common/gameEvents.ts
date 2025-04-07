@@ -7,4 +7,5 @@ export const gameEvents = constructEvents([
   "QUESTION_ANSWERED_ALL",
   "QUESTION_ANSWERED",
   "GAME_END",
+  "GAME_RESTART",
 ]);
