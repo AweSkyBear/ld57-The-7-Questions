@@ -37,7 +37,7 @@ export const controlTree = obsDispCreator(() => {
       state.tree?.setAlpha(0.5);
     },
     [obsDispEvents.OBS_REMOVE]: () => {
-      TheScenes.Game.scene.scene.children.remove(state.tree);
+      state.tree?.destroy();
       state.tree = null;
     },
   };

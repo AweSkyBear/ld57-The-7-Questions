@@ -30,7 +30,7 @@ export const controlBackground = obsDispCreator(() => {
       exposeToWindow({ bg: state.bg });
     },
     [obsDispEvents.OBS_REMOVE]: () => {
-      TheScenes.Game.scene.scene.children.remove(state.bg);
+      state.bg?.destroy();
       state.bg = null;
     },
     [sceneEvents.UPDATE]: () => {

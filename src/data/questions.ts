@@ -19,8 +19,8 @@ export const QUESTIONS = [
   ],
   [
     "Sacrifice 10 living beings to save a 100 ?",
-    "You cherish all life. It is unimaginable for you to sacrifice any one. Not even that of ants or snails. Let life take its own course and you don't push it any other way.",
     "You are willing to take hard choices for the greater good of the whole. If you are running a company - you lay off people. If more will benefit, you do not hesitate.",
+    "You cherish all life. It is unimaginable for you to sacrifice any one. Not even that of ants or snails. Let life take its own course and you don't push it any other way.",
     "On difficult choices? You step carefully. It's all about the fine line, it's all about the specifics of the matter. It's all about doing what's right but the right thing is not always so obvious.",
   ],
   [

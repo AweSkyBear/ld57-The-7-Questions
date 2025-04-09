@@ -22,7 +22,7 @@ export const controlFinalStory = obsDispCreator(() => {
       storyRevealedSfx.play();
       defer(() => storyRevealedSfx.destroy(), 3000);
 
-      const finalStory = GameState.selectedAnswers.join("♾️");
+      const finalStory = GameState.selectedAnswers.join("♾️ ");
 
       state.headlineText =
         (state.headlineText && state.headlineText.setText("Your story")) ||
@@ -39,9 +39,9 @@ export const controlFinalStory = obsDispCreator(() => {
         }).setFontSize("30px");
       state.restartBtnText.setAlpha(0);
 
-      // split by every 20 words
-      const finalStoryFormatted = finalStory
-        .split(/((?:(?:\S+\s){9})|(?:.+)(?=\n|$))/)
+      const finalStoryFormatted = (finalStory as any)
+        .replaceAll("  ", "") // bug fix for the regex to work properly
+        .split(/((?:(?:\S+\s){9})|(?:.+)(?=\n|$))/) // split by N number of words
         // .filter((a) => a)
         .join("\n");
       state.storyText =
@@ -71,8 +71,12 @@ export const controlFinalStory = obsDispCreator(() => {
                   state.storyText?.setLineSpacing(tween.getValue());
                 },
                 onComplete: () => {
+                  if (!state.storyText) return;
+                  state.storyText.height > 700 &&
+                    state.storyText.setFontSize("20px");
+
                   state.headlineText
-                    ?.setY(state.storyText!.getBounds().top)
+                    ?.setY(Math.max(state.storyText!.getBounds().top, 10)) // 10 is at the max top, shouldn't be less
                     .setAlpha(1);
 
                   ODAPI.dispatchEvent(gameEvents.GAME_STORY_SHOWN);
@@ -80,7 +84,7 @@ export const controlFinalStory = obsDispCreator(() => {
                   defer(() => {
                     state.restartBtnText
                       ?.setAlpha(1)
-                      .setY(state.storyText!.getBounds().bottom)
+                      .setY(Math.min(state.storyText!.getBounds().bottom, 700)) // 700 is at the max bottom, shouldn't be less
                       .setInteractive()
                       .on(Phaser.Input.Events.POINTER_DOWN, () => {
                         ODAPI.dispatchEvent(gameEvents.GAME_RESTART);
@@ -98,7 +102,7 @@ export const controlFinalStory = obsDispCreator(() => {
         .setPadding(5, 35, 5, 35)
         // .setBackgroundColor("rgba(255,255,255,0.5)")
         .setBlendMode(1)
-        .setFontSize("22px");
+        .setFontSize("21px");
 
       exposeToWindow({ ...state });
       // TODO:EFFECT positioning to be proper / maybe scale up from very small, maybe add a background, etc.
@@ -106,9 +110,9 @@ export const controlFinalStory = obsDispCreator(() => {
       GameState.gameRunning = false;
     },
     [obsDispEvents.OBS_REMOVE]: () => {
-      TheScenes.Game.scene.scene.children.remove(state.storyText);
-      TheScenes.Game.scene.scene.children.remove(state.headlineText);
-      TheScenes.Game.scene.scene.children.remove(state.restartBtnText);
+      state.restartBtnText?.destroy();
+      state.storyText?.destroy();
+      state.restartBtnText?.destroy();
       state.tweens.forEach((t) => {
         t.stop();
         t.remove();

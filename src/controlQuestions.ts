@@ -123,8 +123,8 @@ export const controlQuestions = obsDispCreator(() => {
       });
     },
     [obsDispEvents.OBS_REMOVE]: () => {
-      TheScenes.Game.scene.scene.children.remove(state.qBg);
-      TheScenes.Game.scene.scene.children.remove(state.qText);
+      state.qBg?.destroy();
+      state.qText?.destroy();
       state.qBg = null;
       state.qText = null;
     },
