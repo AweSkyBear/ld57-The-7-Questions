@@ -14,10 +14,14 @@ export const ODAPI = createAPI({
       "GAME_UPDATE",
       "POST_UPDATE_THROTTLED",
       "HTML_EV_ANY",
-    ].includes(ev!.name) && console.log("EVENT DISP", ev),
-  onObsCreated: (obs) => console.log("OBS ADDED", obs),
-  onObsRemoved: (obs) => console.log("OBS REMOVED", obs),
-  onWarn: (args) => console.log("WARN: ", args?.msg, args?.params),
+    ].includes(ev!.name) &&
+    import.meta.env.PROD &&
+    console.log("EVENT DISP", ev),
+  onObsCreated: (obs) => import.meta.env.PROD && console.log("OBS ADDED", obs),
+  onObsRemoved: (obs) =>
+    import.meta.env.PROD && console.log("OBS REMOVED", obs),
+  onWarn: (args) =>
+    import.meta.env.PROD && console.log("WARN: ", args?.msg, args?.params),
 });
 
 export const {
