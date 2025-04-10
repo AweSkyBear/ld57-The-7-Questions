@@ -10,13 +10,6 @@ export class Boot extends Scene {
     //  The smaller the file size of the assets, the better, as the Boot Scene itself has no preloader.
 
     this.load.image("background", "assets/bg.png");
-
-    //// FIX FOR BLACK SCREEN ON SOME DEVICES // Phaser sets the bg to 0 ???
-    Array.from(document.querySelectorAll("canvas")).forEach((c) => {
-      c.style.height = "";
-      c.style.width = "";
-    });
-    ////
   }
 
   create() {

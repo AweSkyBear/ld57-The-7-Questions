@@ -11,6 +11,7 @@ export const GAME_SIZE = {
   height: 750,
 };
 
+console.log("ssss", 1 - (window.devicePixelRatio - 1));
 //  Find out more information about the Game Config at:
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config: Types.Core.GameConfig = {
@@ -23,7 +24,7 @@ const config: Types.Core.GameConfig = {
   antialiasGL: true,
   scale: {
     mode: Phaser.Scale.NONE,
-    zoom: 1 - (window.devicePixelRatio - 1), // important for crisper looks
+    zoom: 1 / window.devicePixelRatio,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
   scene: [Boot, Preloader, MainMenu, MainGame, GameOver],
