@@ -59,7 +59,57 @@ export const QUESTIONS = [
     "God is simply an imaginary concept to keep people willing to live a life that has no specific purpose.",
     "If there is a God or no god is not up to you. You mind your own business (just like the Universe does).",
   ],
+  [
+    "Is it possible to want \n or feel things you don't know exist ?",
+    "Certainly it's possible to `know` or `feel` things you don't understand yet. Maybe it's the subcontious mind or the concept of intuition.",
+    "You know your feels and wishes are laid in front of you every time. You know exactly what you want and feel.",
+    "In rare occasions feelings and wishes come like from nowhere. It is unexplainable with common sense so you are uncertain what the source is.",
+  ],
+  [
+    "Time is an illusion ?",
+    "Nobody escapes the arrow of time, it is as rigid as stone.",
+    "Time is not only relative, you believe it's an illusion that can be escaped.",
+    "You are certain that the concept of time is slippery. While it generally moves forward, there could be more to it.",
+  ],
+  [
+    "Human senses can be trusted ?",
+    "Our 5 senses are the real source of truth when it comes to judjing the world.",
+    "You disagree with people thinking all is that meets the eye. There are hidden things.",
+    "You are unsure if there are or aren't hidden things out there, unreachable by the 5 human senses.",
+  ],
+  [
+    "Science is the best method \n to search for the truth .. ?",
+    "Science is solid. It should be used as much as possible, rather than falling for whacky concepts.",
+    "While you know modern science is available, you are sure there is more to the picture of the Universe. Much more.",
+    "It is uncertain for you if anything beyond science is plausible. Still, you believe that could be possible.",
+  ],
+
+  [
+    "`Good` is impossible without `bad`",
+    "The `good` wouldn't exist without the `bad` as a concept. Like 2 sides of a coin.",
+    "You believe the `good` in the world should shine bright, no need for the bad things or people!",
+    "`Good` and `bad` for you are just man-made concepts we should be careful with.",
+  ],
+  [
+    "Is beauty in the eye of the beholder ?",
+    "What is beautiful is determined by the point of view. ",
+    "Beauty is not defined by the beholder. It is universal!",
+    "What defines `beauty` may be uncertain, or it may even be manipulated, you believe.",
+  ],
+  [
+    "Can predestination and free will \n exist together ?",
+    "You think free will can cooperate with faith - nothing is black and white, even if they both exist.",
+    "You don't trust that `free will` works with `predestation`. Maybe only one of them is true.",
+    "`Predestation` and `free will` are vague enough or uncertain to you. There are many traps. Maybe you don't trust either.",
+  ],
+
   // TODO:ADD a few more
+  /*
+  [
+    "",
+  ]
+
+  */
 ];
 
 export default QUESTIONS;
