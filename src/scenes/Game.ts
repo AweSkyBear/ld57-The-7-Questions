@@ -8,6 +8,7 @@ import { controlQuestions } from "../controlQuestions";
 import { controlChoice } from "../controlChoice";
 import { gameEvents } from "../common/gameEvents";
 import { controlFinalStory } from "../controlFinalStory";
+import { controlLights } from "../controlLights";
 
 const TARGET_FPS = 60;
 const FPS_DELTA = 1000 / TARGET_FPS;
@@ -28,6 +29,7 @@ export class Game extends Scene {
 
     const initObservers = () => {
       this.observers.push(
+        controlLights(),
         controlBackground(),
         controlTree(),
         controlQuestions(),

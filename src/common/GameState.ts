@@ -1,6 +1,7 @@
 import Prando from "prando";
 import QUESTIONS from "../data/questions";
 import { exposeToWindow } from "./debug";
+import { TheScenes } from "../scenes/TheScenes";
 
 const getInitialState = () => ({
   // TODO:
@@ -16,6 +17,8 @@ export const GameState = getInitialState();
 
 export const resetGameState = () => {
   Object.assign(GameState, getInitialState());
+  TheScenes.Game.scene.stop();
+  TheScenes.Game.scene.start();
 };
 
 exposeToWindow({ GameState });

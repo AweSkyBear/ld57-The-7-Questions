@@ -50,13 +50,13 @@ export const controlChoice = obsDispCreator(
             // @ts-ignore
             this.setScale(1.3);
             // @ts-ignore
-            this.setAlpha(0.8);
+            // this.setAlpha(0.8);
           })
           .on(Phaser.Input.Events.POINTER_OUT, function () {
             // @ts-ignore
             this.setScale(1);
             // @ts-ignore
-            this.setAlpha(1);
+            // this.setAlpha(1);
           })
           .setBlendMode(Phaser.BlendModes.SCREEN)
       );
@@ -70,10 +70,8 @@ export const controlChoice = obsDispCreator(
             return;
           }
 
-          // TODO:BRANCH - if has NO MORE choices left for this color: just tween the thing
-          //// maybe use `this`
-
           const answerBehindQuestion = GameState.currentQuestion[choiceInd + 1];
+
           ODAPI.dispatchEvent(gameEvents.QUESTION_ANSWERED, {
             payload: {
               questionInd: GameState.qIndex,

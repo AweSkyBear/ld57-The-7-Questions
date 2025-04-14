@@ -26,7 +26,11 @@ export class Preloader extends Scene {
   preload() {
     this.load.image(TEXTURES_MAP.bg, "assets/bg.png");
     this.load.image(TEXTURES_MAP.cube, "assets/cube.png");
-    this.load.image(TEXTURES_MAP.tree, "assets/tree-2.png"); // TODO: other trees ?
+    this.load.image({
+      key: TEXTURES_MAP.tree,
+      url: "assets/tree-2.jpg",
+      normalMap: "assets/tree-normals.jpg",
+    }); // TODO: other trees ?
     this.load.image(TEXTURES_MAP.questionBg, "assets/q-bg.png");
     this.load.image(TEXTURES_MAP.questionBg, "assets/choice-hexa.png");
 
@@ -36,7 +40,7 @@ export class Preloader extends Scene {
     //  Load the assets for the game - Replace with your own assets
     this.load.setPath("assets");
 
-    this.load.image("logo", "logo.png");
+    // this.load.image("logo", "logo.png");
   }
 
   create() {

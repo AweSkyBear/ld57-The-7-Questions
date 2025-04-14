@@ -39,7 +39,8 @@ export const controlQuestions = obsDispCreator(() => {
         .image(midPoint()[0], midPoint()[1] + offsetY, TEXTURES_MAP.questionBg)
         .setAlpha(1)
         .setBlendMode(Phaser.BlendModes.ADD)
-        .setAlpha(0.5);
+        .setAlpha(0.5)
+        .setPipeline("Light2D");
 
       exposeToWindow({ qBg: state.qBg });
 
