@@ -1,12 +1,12 @@
 {
-  "name": "template-vite-ts",
-  "description": "A Phaser 3 TypeScript template using Vite.",
-  "version": "1.3.2",
+  "name": "the-7-questions-ld57",
+  "description": "My entry for LD57 / by AweSkyBear",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/phaserjs/template-vite-ts.git"
   },
-  "author": "Phaser Studio <support@phaser.io> (https://phaser.io/)",
+  "author": "AweSkyBear",
   "license": "MIT",
   "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
   "bugs": {
