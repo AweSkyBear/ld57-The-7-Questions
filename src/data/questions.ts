@@ -60,7 +60,7 @@ export const QUESTIONS = [
     "If there is a God or no god is not up to you. You mind your own business (just like the Universe does).",
   ],
   [
-    "Is it possible to want \n or feel things you don't know exist ?",
+    "Is it possible to want \nor feel things you don't know exist ?",
     "Certainly it's possible to `know` or `feel` things you don't understand yet. Maybe it's the subcontious mind or the concept of intuition.",
     "You know your feels and wishes are laid in front of you every time. You know exactly what you want and feel.",
     "In rare occasions feelings and wishes come like from nowhere. It is unexplainable with common sense so you are uncertain what the source is.",
@@ -78,7 +78,7 @@ export const QUESTIONS = [
     "You are unsure if there are or aren't hidden things out there, unreachable by the 5 human senses.",
   ],
   [
-    "Science is the best method \n to search for the truth .. ?",
+    "Science is the best method \nto search for the truth .. ?",
     "Science is solid. It should be used as much as possible, rather than falling for whacky concepts.",
     "While you know modern science is available, you are sure there is more to the picture of the Universe. Much more.",
     "It is uncertain for you if anything beyond science is plausible. Still, you believe that could be possible.",
@@ -97,7 +97,7 @@ export const QUESTIONS = [
     "What defines `beauty` may be uncertain, or it may even be manipulated, you believe.",
   ],
   [
-    "Can predestination and free will \n exist together ?",
+    "Can predestination and free will \nexist together ?",
     "You think free will can cooperate with faith - nothing is black and white, even if they both exist.",
     "You don't trust that `free will` works with `predestation`. Maybe only one of them is true.",
     "`Predestation` and `free will` are vague enough or uncertain to you. There are many traps. Maybe you don't trust either.",

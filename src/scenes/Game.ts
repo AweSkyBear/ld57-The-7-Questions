@@ -56,10 +56,12 @@ export class Game extends Scene {
       this.observers = [];
     });
 
-    /// audio track
-    const ambientTrack = this.sound.add("ambient");
-    ambientTrack.loop = true;
-    ambientTrack.play();
+    if (!this.sound.get("ambient")) {
+      /// audio track
+      const ambientTrack = this.sound.add("ambient");
+      ambientTrack.loop = true;
+      ambientTrack.play();
+    }
   }
 
   private _deltaAccum = 0;
